@@ -48,7 +48,11 @@ module Analytical
       # value: String
       # scope: 1 (visitor-level), 2 (session-level), or 3 (page-level)
       def custom_variable(slot, key, value, scope)
-        "_gaq.push(['_setCustomVar', #{slot}, '#{key}', '#{value}', #{scope} ]);"
+        <<-JS
+          if (typeof window.custom_variables == 'undefined') window.custom_variables = [];
+          window.custom_variables.push({slot: #{slot}, key: '#{key}', value: '#{value}', scope: #{scope}});
+        JS
+        //"_gaq.push(['_setCustomVar', #{slot}, '#{key}', '#{value}', #{scope} ]);"
       end
 
       def track(*args)
