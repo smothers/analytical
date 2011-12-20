@@ -3,11 +3,6 @@ module Analytical
     class Google
       include Analytical::Modules::Base
 
-      # slot: 1-5 allowed
-      # key: String
-      # value: String
-      # scope: 1 (visitor-level), 2 (session-level), or 3 (page-level)
-      # custom_variables: Array of Objects :custom_variables => [{:slot => 1, :key => "key1", :value => "value1", :scope => 3}, {:slot => 2, :key => "key2", :value => "value2", :scope => 1}]
       def initialize(options={})
         super
         @tracking_command_location = :head_append
@@ -62,7 +57,7 @@ module Analytical
         data = args.first || {}
         data = data[:value] if data.is_a?(Hash)
         data_string = !data.nil? ? ", #{data}" : ""
-        "_gaq.push(['_trackEvent', \"#{name}\" #{data_string} , \"test\", 1 ]);"
+        "_gaq.push(['_trackEvent', \"Event\", \"#{name}\"" + data_string + "]);"
       end
 
     end
