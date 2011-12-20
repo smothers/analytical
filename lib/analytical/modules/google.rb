@@ -3,7 +3,7 @@ module Analytical
     class Google
       include Analytical::Modules::Base
 
-       # slot: 1-5 allowed
+      # slot: 1-5 allowed
       # key: String
       # value: String
       # scope: 1 (visitor-level), 2 (session-level), or 3 (page-level)
@@ -23,11 +23,8 @@ module Analytical
             _gaq.push(['_setDomainName', '#{options[:domain]}']);
             #{"_gaq.push(['_setAllowLinker', true]);" if options[:allow_linker]}
             #{"_gaq.push(['_trackPageLoadTime']);" if options[:track_page_load_time]}
-            console.log("------------- custom_variables");
-            console.log(custom_variables);
             if(typeof custom_variables !== 'undefined'){
               for( custom_variable in custom_variables){
-                console.log(custom_variable);
                 _gaq.push(['_setCustomVar', custom_variable.slot, custom_variable.key, custom_variable.value, custom_variable.scope ]);
               }
             }
@@ -48,11 +45,13 @@ module Analytical
       # value: String
       # scope: 1 (visitor-level), 2 (session-level), or 3 (page-level)
       def custom_variable(slot, key, value, scope)
-        <<-JS
+        js = <<-HTML
+        <script type="text/javascript">
           if (typeof window.custom_variables == 'undefined') window.custom_variables = [];
           window.custom_variables.push({slot: #{slot}, key: '#{key}', value: '#{value}', scope: #{scope}});
-        JS
-        //"_gaq.push(['_setCustomVar', #{slot}, '#{key}', '#{value}', #{scope} ]);"
+        </script>
+        HTML
+        js
       end
 
       def track(*args)
