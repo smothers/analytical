@@ -19,8 +19,8 @@ module Analytical
             #{"_gaq.push(['_setAllowLinker', true]);" if options[:allow_linker]}
             #{"_gaq.push(['_trackPageLoadTime']);" if options[:track_page_load_time]}
             if(typeof custom_variables !== 'undefined'){
-              for( custom_variable in custom_variables){
-                _gaq.push(['_setCustomVar', custom_variable.slot, custom_variable.key, custom_variable.value, custom_variable.scope ]);
+              for(var i = 0; i < custom_variables.length; i++) {
+                _gaq.push(['_setCustomVar', custom_variables[i].slot, custom_variables[i].key, custom_variables[i].value, custom_variables[i].scope ]);
               }
             }
              _gaq.push(['_trackPageview']);
