@@ -43,6 +43,15 @@ module Analytical
         args.pop while args[-1].nil?
         "_gaq.push(#{args.to_json});"
       end
+
+      def event_javascript
+        js = <<-HTML
+        if (data.category == null) {
+          data.category = "Event";
+        }
+        _gaq.push(['_trackEvent', data.category, name, data.label, data.value, data.noninteraction]);
+        HTML
+      end
       
       def custom_event(category, action, opt_label=nil, opt_value=nil)
         args = [category, action, opt_label, opt_value].compact
