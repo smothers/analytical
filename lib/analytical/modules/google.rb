@@ -17,7 +17,7 @@ module Analytical
             _gaq.push(['_setAccount', '#{options[:key]}']);
             _gaq.push(['_setDomainName', '#{options[:domain]}']);
             #{"_gaq.push(['_setAllowLinker', true]);" if options[:allow_linker]}
-            _gaq.push(['_trackPageview']);
+            #{"_gaq.push(['_trackPageview']);" unless options[:manually_track_pageviews]}
             (function() {
               var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
               ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
