@@ -94,9 +94,20 @@ module Analytical
 
       def set_javascript
         js = <<-HTML
-        if (typeof(data.index) == 'number' && data.index >= 1 && data.index <= 5 &&
-            data.name && data.value) {
-          _gaq.push(['_setCustomVar', data.index, data.name, data.value, data.scope]);
+        var index = parseInt(data.index);
+        if (index >= 1 && index <= 5 && data.name && data.value) {
+          var scope = null;
+          switch (data.scope) {
+            case '1':
+            case '2':
+            case '3':
+              scope = parseInt(data.scope); break;
+            case 'visitor': scope = 1; break;
+            case 'session': scope = 2; break;
+            case 'page': scope = 3; break;
+            default: scope = data.scope;
+          }
+          _gaq.push(['_setCustomVar', data.index, data.name, data.value, scope]);
         }
         HTML
       end
