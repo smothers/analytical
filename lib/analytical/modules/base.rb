@@ -94,7 +94,7 @@ module Analytical
       # end
 
       # The result of the following method will be included in a JavaScript function
-      # track = function(data) {
+      # track = function(page) {
       #   // Your code here...
       # }
       def track_javascript
