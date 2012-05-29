@@ -107,7 +107,7 @@ module Analytical
             case 'page': scope = 3; break;
             default: scope = data.scope;
           }
-          _gaq.push(['_setCustomVar', data.index, data.name, data.value, scope]);
+          _gaq.push(['_setCustomVar', index, data.name, data.value, scope]);
         }
         HTML
       end
