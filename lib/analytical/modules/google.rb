@@ -64,7 +64,13 @@ module Analytical
           index = data[:index].to_i
           name  = data[:name ]
           value = data[:value]
-          scope = data[:scope]
+          scope = case data[:scope].to_s
+          when '1', '2', '3' then data[:scope].to_i
+          when 'visitor' then 1
+          when 'session' then 2
+          when 'page' then 3
+          else nil
+          end
           if (1..5).to_a.include?(index) && !name.nil? && !value.nil?
             data = "#{index}, '#{name}', '#{value}'"
             data += (1..3).to_a.include?(scope) ? ", #{scope}" : ""
