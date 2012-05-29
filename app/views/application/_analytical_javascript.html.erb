@@ -6,6 +6,10 @@ var Analytical = {
   event: function(name, data) {
     if (typeof data === 'undefined') { data = {}; }
 <%= raw analytical.now.event_javascript %>
+  },
+  set: function(data) {
+    if (typeof data === 'undefined') { data = {}; }
+<%= raw analytical.now.set_javascript %>
   }
 };
 </script>

@@ -108,6 +108,14 @@ module Analytical
       def event_javascript
         event('__EVENT__', {}).gsub(/"__EVENT__"/,'name').gsub(/"?\{\}"?/,'data') if respond_to?(:event)
       end
+
+      # The result of the following method will be included in a JavaScript function
+      # set = function(data) {
+      #   // Your code here...
+      # }
+      def set_javascript
+        set({}).gsub(/"?\{\}"?/,'data') if respond_to?(:event)
+      end
     end
   end
 end
