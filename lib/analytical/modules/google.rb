@@ -94,7 +94,7 @@ module Analytical
 
       def set_javascript
         js = <<-HTML
-        if (typeof(data.index) == 'number' && data.index <= 1 && data.index <= 5 &&
+        if (typeof(data.index) == 'number' && data.index >= 1 && data.index <= 5 &&
             data.name && data.value) {
           _gaq.push(['_setCustomVar', data.index, data.name, data.value, data.scope]);
         }
