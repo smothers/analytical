@@ -69,7 +69,7 @@ describe "Analytical::Modules::Google" do
   describe '#set_javascript' do
     it 'should return a custom javascript function' do
       @api = Analytical::Modules::Google.new :parent=>@parent, :key=>'abcdef'
-      @api.set_javascript.should =~ /_gaq.push\(\['_setCustomVar', data.index, data.name, data.value, data.scope\]\);/
+      @api.set_javascript.should =~ /_gaq.push\(\['_setCustomVar'.*]\);/
     end
   end
 
