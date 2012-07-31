@@ -15,7 +15,7 @@ module Analytical
           <script type="text/javascript">
             (function(c,a){var b,d,h,e;b=c.createElement("script");b.type="text/javascript";
             b.async=!0;b.src=("https:"===c.location.protocol?"https:":"http:")+
-            '//mixpanel.com/site_media/js/api/mixpanel.2.js';d=c.getElementsByTagName("script")[0];
+            '//api.mixpanel.com/site_media/js/api/mixpanel.2.js';d=c.getElementsByTagName("script")[0];
             d.parentNode.insertBefore(b,d);a._i=[];a.init=function(b,c,f){function d(a,b){
             var c=b.split(".");2==c.length&&(a=a[c[0]],b=c[1]);a[b]=function(){a.push([b].concat(
             Array.prototype.slice.call(arguments,0)))}}var g=a;"undefined"!==typeof f?g=a[f]=[]:
