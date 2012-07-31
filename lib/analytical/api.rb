@@ -15,7 +15,8 @@ module Analytical
         module_options = @options.merge(@options[m] || {})
         module_options.delete(:modules)
         module_options[:session_store] = Analytical::SessionCommandStore.new(@options[:session], m) if @options[:session]
-        h[m] = "Analytical::Modules::#{m.to_s.camelize}".constantize.new(module_options)
+        new_module = "Analytical::Modules::#{m.to_s.camelize}".constantize.new(module_options)
+        h[m] = new_module if new_module.enabled?
         h
       end
       @dummy_module = Analytical::Modules::DummyModule.new
