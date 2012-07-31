@@ -30,6 +30,10 @@ module Analytical
         end
       end
 
+      def enabled?
+        !(options[:key].blank?)
+      end
+
       def track(event, properties = {})
         callback = properties.delete(:callback) || "function(){}"
         %(mixpanel.track("#{event}", #{properties.to_json}, #{callback});)

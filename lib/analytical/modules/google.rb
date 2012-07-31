@@ -29,6 +29,10 @@ module Analytical
         end
       end
 
+      def enabled?
+        !(options[:key].blank?)
+      end
+
       def track(*args)
         "_gaq.push(['_trackPageview'#{args.empty? ? ']' : ', "' + args.first + '"]'});"
       end
